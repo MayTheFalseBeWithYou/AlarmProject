@@ -7,11 +7,11 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import {Alert, Platform, StyleSheet, Text, View} from 'react-native';
 import Moment from 'moment';
 import Orientation from 'react-native-orientation';
 import { material } from 'react-native-typography'
-import CircleMenu from '@ramotion/react-native-circle-menu'
+import CircleButton from 'react-native-circle-button';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -19,6 +19,7 @@ const instructions = Platform.select({
     'Double tap R on your keyboard to reload,\n' +
     'Shake or press menu button for dev menu',
 });
+
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -59,16 +60,51 @@ export default class App extends Component<Props> {
     });
   }
 
+  items = [
+    {
+      name: 'md-home',
+      color: '#298CFF'
+    },
+    {
+      name: 'md-search',
+      color: '#30A400'
+    },
+    {
+      name: 'md-time',
+      color: '#FF4B32'
+    },
+    {
+      name: 'md-settings',
+      color: '#8A39FF'
+    },
+    {
+      name: 'md-navigate',
+      color: '#FF6A00'
+    }
+  ];
+  
   onPress = index => console.warn(`${this.items[index].name} icon pressed!`);
+  onPressButtonTop = function(){
+    Alert.alert(sadasd, '1234');
+  };
+  onPressButtonRight = {
+  };
+  onPressButtonBottom = {
+
+  };
+  onPressButtonLeft = {
+
+  };
 
   render() {
     return (
-      <CircleMenu
-            bgColor="#E74C3C"
-            items={this.items}
-            onPress={this.onPress}
-        />
+
+
       <View style={styles.container}>
+        <View style={styles.button}>
+            <CircleButton size={45} />
+        </View>
+
         <View style={styles.timebox} >
           <Text style={[material.display4, styles.timeboxtextLeft]}>{Moment(this.state.time).format('HH')}</Text>        
         </View>
@@ -104,7 +140,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',   
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
-  },
+  },button:{
+    position: "absolute", bottom: 15, right: 15 },
   timebox: {
     flex: 5,
 /*     backgroundColor: 'powderblue'
@@ -133,27 +170,9 @@ const styles = StyleSheet.create({
   middle: {
     justifyContent: 'center',
     textAlign: 'center',
-  }, 
+  }, actionButtonIcon: {
+    fontSize: 20,
+    height: 22,
+    color: 'white',
+  },
 });
-items = [
-  {
-    name: 'md-home',
-    color: '#298CFF'
-  },
-  {
-    name: 'md-search',
-    color: '#30A400'
-  },
-  {
-    name: 'md-time',
-    color: '#FF4B32'
-  },
-  {
-    name: 'md-settings',
-    color: '#8A39FF'
-  },
-  {
-    name: 'md-navigate',
-    color: '#FF6A00'
-  }
-];
