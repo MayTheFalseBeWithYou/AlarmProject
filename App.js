@@ -82,18 +82,35 @@ export default class App extends Component<Props> {
       color: '#FF6A00'
     }
   ];
-  
-  onPress = index => console.warn(`${this.items[index].name} icon pressed!`);
+
   onPressButtonTop = function(){
-    Alert.alert(sadasd, '1234');
-  };
-  onPressButtonRight = {
-  };
+    alert('1234');
+    this.onPressButtonRight();
+  }
+  onPressButtonRight =function(){
+    alert('1234');
+    this.onPressButtonBottom('up');
+  }
   onPressButtonBottom = {
 
   };
   onPressButtonLeft = {
 
+  };
+
+  openCircularMenu = function(setting){
+    switch(setting) {
+      case 'up': 
+        alert('up');
+        alert(setting);
+        break;
+      case 'low': 
+        break;
+      case 'left': 
+        break;
+      case 'right':
+        break;
+    }
   };
 
   render() {
@@ -102,7 +119,7 @@ export default class App extends Component<Props> {
 
       <View style={styles.container}>
         <View style={styles.button}>
-            <CircleButton size={45} />
+            <CircleButton size={45} onPressButtonTop= {this.onPressButtonTop}/>
         </View>
 
         <View style={styles.timebox} >
